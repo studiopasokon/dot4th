@@ -1,23 +1,21 @@
-﻿Console.WriteLine("Welcome to dot4th, a simple Forth interpreter");
+﻿using dot4thshell;
+
+Console.WriteLine("Welcome to dot4th, a simple Forth interpreter written in C#");
 Console.WriteLine();
 
 var running = true;
 while (running)
 {
-    Console.Write(">>> ");
-    var inputLine = Console.ReadLine();
-    
-    // TODO: replace this by a real processing of the Forth word 'bye'.
-    if (inputLine is "bye")
-        running = false;
+    var tokens = InputHandler.ReadTokens(Console.Write, Console.ReadLine);
 
-    // Process the input.
-    var tokens = inputLine?.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-    if (tokens is not null)
-        foreach (var token in tokens)
+    foreach (var token in tokens)
+    {
+        if (token == "bye")
         {
-            Console.WriteLine(token);
+            running = false;
+            break;
         }
-    
-    Console.WriteLine();
+        
+        Console.WriteLine(token);
+    }
 }
