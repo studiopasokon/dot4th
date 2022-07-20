@@ -13,9 +13,6 @@ internal static class InputHandler
     /// <returns>List of tokens found in the input. Can be empty.</returns>
     public static IEnumerable<string> ReadTokens(Action<string?> writePrompt, Func<string?> readInput)
     {
-        if (writePrompt is null) throw new ArgumentNullException(nameof(writePrompt), "A write prompt function is required");
-        if (readInput is null) throw new ArgumentNullException(nameof(readInput), "A read input function is required");
-        
         writePrompt("");
         writePrompt(">>> ");
         var inputLine = readInput();
